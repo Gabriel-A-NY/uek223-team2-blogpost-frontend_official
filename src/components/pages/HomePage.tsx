@@ -41,6 +41,9 @@ export default function HomePage() {
                     <Typography variant="body2" color="text.secondary">
                       {blog.text}
                     </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                          {blog.category}
+                      </Typography>
                   </CardContent>
                 </Card>
               </Grid>
