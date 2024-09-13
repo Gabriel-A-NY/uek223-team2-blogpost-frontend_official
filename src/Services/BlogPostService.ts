@@ -43,11 +43,21 @@ const updateBlogPost = async (id: string, text: string, title: string, category:
     }
 }
 
+const deleteBlogPost = async (id: string) => {
+    try {
+        const response = await api.delete(`${id}`);
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const BlogPostService = {
     getBlogPosts,
     createBlogPost,
     getBlogPostById,
     updateBlogPost,
+    deleteBlogPost
 }
 
 export default BlogPostService;
