@@ -1,5 +1,5 @@
 export interface BlogProperties {
-    blogId: string;
+    id: string;
     text: string;
     title: string;
     category: string;
