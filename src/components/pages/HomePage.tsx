@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import BlogPostService from "../../Services/BlogPostService";
 import {BlogProperties} from "../../types/BlogProperties";
 import {Button, Grid, Typography} from "@mui/material";
@@ -27,6 +27,23 @@ export default function HomePage() {
         navigate(`/blogposts/${id}`);
     };
 
+    const handleAddBlog = () => {
+        navigate(`/blogposts/add`)
+    }
+
+    const handleUpdateBlog = (id: string) => {
+        navigate(`/blogposts/update/${id}`);
+    }
+
+    const handleDeleteBlogPost = async (blogId: string) => {
+        try {
+            await BlogPostService.deleteBlogPost(blogId);
+            const updatedBlogPost = blogposts.filter((blogposts) => blogposts.id !== blogId);
+            setBlogposts(updatedBlogPost);
+        } catch (error) {
+            alert("Error");
+        }
+    };
 
     return (
         <Grid container spacing={2}>
@@ -41,10 +58,19 @@ export default function HomePage() {
                                 {blog.text}
                             </Typography>
                             <Typography variant="body2">
-                                Author: {blog.author.firstName}
+                                {blog.id}
                             </Typography>
                             <Button onClick={() => handleShowBlog(blog.id)}>
                                 View Blog
+                            </Button>
+                            <Button onClick={() => handleAddBlog()}>
+                                Add Blog
+                            </Button>
+                            <Button onClick={() => handleUpdateBlog(blog.id)}>
+                                Update Blog
+                            </Button>
+                            <Button onClick={() => handleDeleteBlogPost(blog.id)}>
+                                Delete Blog
                             </Button>
                         </CardContent>
                     </Card>

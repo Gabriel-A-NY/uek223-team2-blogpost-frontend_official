@@ -1,11 +1,18 @@
+export interface Author {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+}
+
 export interface BlogProperties {
     id: string;
     text: string;
     title: string;
     category: string;
-    author: string;
+    author: Author;
 }
 
-export interface Blogs {
-    blog: BlogProperties[];
+export interface BlogList {
+    blogs: BlogProperties[];
 }

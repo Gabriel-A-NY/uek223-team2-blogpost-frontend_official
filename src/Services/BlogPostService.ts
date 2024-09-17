@@ -9,14 +9,9 @@ const getBlogPosts = async () => {
     }
 }
 
-const createBlogPost = async (blogId: string,
-                              text: string,
-                              title: string,
-                              category: string,
-                              author: string) => {
+const createBlogPost = async (blogPostData:any) => {
     try {
-        const data = {author};
-        const response = await api.post("/blogposts", data);
+        const response = await api.post("/blogposts", blogPostData);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -24,19 +19,18 @@ const createBlogPost = async (blogId: string,
 
 }
 
-const getBlogPostById  = async (id: string) => {
+const getBlogPostById  = async (id: string | undefined) => {
     try {
-        const response = await api.get(`${id}`);
+        const response = await api.get(`/blogposts/${id}`);
         return response.data;
     } catch (error) {
         console.log(error);
     }
 }
 
-const updateBlogPost = async (id: string, text: string, title: string, category: string, author: string) => {
+const updateBlogPost = async (id: string, updatedBlogPost: any) => {
     try {
-        const data = {author}
-        const response = await api.put(`${id}`, data);
+        const response = await api.put(`/blogposts/${id}`, updatedBlogPost);
         return response.data;
     } catch (error) {
         console.log(error);
