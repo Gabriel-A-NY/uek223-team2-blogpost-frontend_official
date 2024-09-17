@@ -6,8 +6,8 @@ import UserTable from '../components/pages/UserPage/UserTable';
 import UserPage from '../components/pages/UserPage/UserPage';
 import authorities from '../config/Authorities';
 import SingleBlogView from "../components/organisms/SingleBlogView";
-import AddBlogDialog from "../components/molecules/AddBlogDialog/AddBlogDialog";
 import UpdateBlogPostDialog from "../components/molecules/UpdateBlogDialog/UpdateBlogDialog";
+import AddBlogDialog from "../components/molecules/AddBlogDialog/AddBlogDialog";
 
 /**
  * Router component renders a route switch with all available pages

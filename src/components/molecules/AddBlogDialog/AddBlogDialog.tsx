@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextField, Button, Grid, Typography } from "@mui/material";
 import BlogPostService from "../../../Services/BlogPostService";
 
-export default function CreateBlogPostDialog() {
+export default function AddBlogDialog() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [category, setCategory] = useState("");
