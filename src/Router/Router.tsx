@@ -6,6 +6,8 @@ import UserTable from '../components/pages/UserPage/UserTable';
 import UserPage from '../components/pages/UserPage/UserPage';
 import authorities from '../config/Authorities';
 import SingleBlogView from "../components/organisms/SingleBlogView";
+import AddBlogDialog from "../components/molecules/AddBlogDialog/AddBlogDialog";
+import UpdateBlogPostDialog from "../components/molecules/UpdateBlogDialog/UpdateBlogDialog";
 
 /**
  * Router component renders a route switch with all available pages
@@ -21,8 +23,9 @@ const Router = () => {
         <Routes>
             <Route path={'/'} element={<HomePage />} />
             <Route path={'/login'} element={<LoginPage />} />
-
+            <Route path={'/blogposts/add'} element={<AddBlogDialog />} />
             <Route path={'/blogposts/:id'} element={<SingleBlogView />} />
+            <Route path={'/blogposts/update/:id'} element={<UpdateBlogPostDialog />} />
             <Route
                 path={'/users'}
                 element={<PrivateRoute requiredAuths={[]} element={<UserTable />} />}
