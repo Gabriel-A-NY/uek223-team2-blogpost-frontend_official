@@ -61,7 +61,6 @@ export default function HomePage() {
     };
 
     const handleBlogUpdate = async (updatedBlog: BlogProperties) => {
-        // Update the blog list with the updated blog data
         setBlogposts((prev) =>
             prev.map((blog) =>
                 blog.id === updatedBlog.id ? updatedBlog : blog
@@ -83,7 +82,10 @@ export default function HomePage() {
                                     {blog.text}
                                 </Typography>
                                 <Typography variant="body2">
-                                    {blog.author.firstName} {blog.author.lastName}
+                                    author: {blog.author.firstName} {blog.author.lastName}
+                                </Typography>
+                                <Typography variant="body2">
+                                    category: {blog.category}
                                 </Typography>
                                 <ViewBlogButton onClick={() => handleShowBlog(blog.id)} />
                                 <AddBlogPostButton onClick={() => handleAddBlog()} />
