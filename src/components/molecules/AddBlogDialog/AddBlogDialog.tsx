@@ -78,34 +78,7 @@ export default function AddBlogDialog() {
                         required
                     />
                 </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        fullWidth
-                        label="First Name"
-                        value={author.firstName}
-                        onChange={(e) => setAuthor({ ...author, firstName: e.target.value })}
-                        required
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        fullWidth
-                        label="Last Name"
-                        value={author.lastName}
-                        onChange={(e) => setAuthor({ ...author, lastName: e.target.value })}
-                        required
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Email"
-                        value={author.email}
-                        onChange={(e) => setAuthor({ ...author, email: e.target.value })}
-                        type="email"
-                        required
-                    />
-                </Grid>
+
 
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" color="primary">
