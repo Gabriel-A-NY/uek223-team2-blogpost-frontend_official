@@ -10,7 +10,7 @@ import AddBlogPostButton from "../atoms/AddBlogButton";
 import UpdateBlogButton from "../atoms/UpdateBlogButton";
 import DeleteBlogButton from "../atoms/DeleteBlogButton";
 
-export default function HomePage() {
+export default function Dashboard() {
     const [blogposts, setBlogposts] = useState<BlogProperties[]>([]);
     const navigate = useNavigate();
 
