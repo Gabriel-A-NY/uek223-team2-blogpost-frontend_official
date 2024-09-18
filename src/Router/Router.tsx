@@ -8,6 +8,7 @@ import authorities from '../config/Authorities';
 import SingleBlogView from "../components/organisms/SingleBlogView";
 import UpdateBlogPostDialog from "../components/molecules/UpdateBlogDialog/UpdateBlogDialog";
 import AddBlogDialog from "../components/molecules/AddBlogDialog/AddBlogDialog";
+import {Dashboard} from "@mui/icons-material";
 
 /**
  * Router component renders a route switch with all available pages
@@ -26,6 +27,14 @@ const Router = () => {
             <Route path={'/blogposts/add'} element={<AddBlogDialog />} />
             <Route path={'/blogposts/:id'} element={<SingleBlogView />} />
             <Route path={'/blogposts/update/:id'} element={<UpdateBlogPostDialog />} />
+            <Route
+                path='/dashboard'
+                element={
+            <PrivateRoute requiredAuths={[authorities.USER_DEACTIVATE, authorities.USER_CREATE]}
+                          element={<Dashboard />}
+            ></PrivateRoute>
+                }/>
+
             <Route
                 path={'/users'}
                 element={<PrivateRoute requiredAuths={[]} element={<UserTable />} />}

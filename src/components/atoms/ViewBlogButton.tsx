@@ -1,12 +1,9 @@
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
+import ButtonProperties from "../../types/ButtonProperties";
 
-interface ViewBlogButtonProps {
-    onClick?: () => void
-}
-
-function ViewBlogButton({onClick}: ViewBlogButtonProps) {
+function ViewBlogButton({ onClick }: ButtonProperties) {
     return (
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={onClick}>
             View Blog
         </Button>
     );
