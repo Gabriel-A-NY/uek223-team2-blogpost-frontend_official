@@ -62,16 +62,17 @@ export default function HomePage() {
                                 {blog.text}
                             </Typography>
                             <Typography variant="body2">
-                                {blog.id}
+                                {blog.author.firstName} {blog.author.lastName}
                             </Typography>
-                            <ViewBlogButton onClick={() => handleShowBlog(blog.id)} />
-                            <AddBlogPostButton onClick={() => handleAddBlog()} />
-                            <UpdateBlogButton onClick={() => handleUpdateBlog(blog.id)} />
-                            <DeleteBlogButton onClick={() => handleDeleteBlogPost(blog.id)} />
+                            <ViewBlogButton onClick={() => handleShowBlog(blog.id)}/>
+                            <AddBlogPostButton onClick={() => handleAddBlog()}/>
+                            <UpdateBlogButton onClick={() => handleUpdateBlog(blog.id)}/>
+                            <DeleteBlogButton onClick={() => handleDeleteBlogPost(blog.id)}/>
                         </CardContent>
                     </Card>
                 </Grid>
             ))}
         </Grid>
+
     );
 }

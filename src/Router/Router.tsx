@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import LoginPage from '../components/pages/LoginPage/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../components/pages/HomePage';
@@ -22,29 +22,31 @@ const Router = () => {
 
     return (
         <Routes>
-            <Route path={'/'} element={<HomePage />} />
-            <Route path={'/login'} element={<LoginPage />} />
-            <Route path={'/blogposts/add'} element={<AddBlogDialog />} />
-            <Route path={'/blogposts/:id'} element={<SingleBlogView />} />
-            <Route path={'/blogposts/update/:id'} element={<UpdateBlogPostDialog />} />
+            <Route path={'/'} element={<LoginPage/>}/>
+            <Route path={'/login'} element={<LoginPage/>}/>
+            <Route path={'/blogposts/add'} element={<AddBlogDialog/>}/>
+            <Route path={'/blogposts/:id'} element={<SingleBlogView/>}/>
+            <Route path={'/blogposts/update/:id'} element={<UpdateBlogPostDialog/>}/>
+            <Route path={'blogposts'} element={<HomePage/>} />
             <Route
-                path='/dashboard'
+                path={'/dashboard'}
                 element={
-            <PrivateRoute requiredAuths={[authorities.USER_DEACTIVATE, authorities.USER_CREATE]}
-                          element={<Dashboard />}
-            ></PrivateRoute>
-                }/>
+                    <PrivateRoute requiredAuths={[]}
+                                  element={<HomePage/>}
+                    ></PrivateRoute>
+                }
+            />
 
             <Route
                 path={'/users'}
-                element={<PrivateRoute requiredAuths={[]} element={<UserTable />} />}
+                element={<PrivateRoute requiredAuths={[]} element={<UserTable/>}/>}
             />
             <Route
                 path='/useredit'
                 element={
                     <PrivateRoute
                         requiredAuths={[authorities.USER_DEACTIVATE, authorities.USER_CREATE]}
-                        element={<UserPage />}
+                        element={<UserPage/>}
                     ></PrivateRoute>
                 }
             />
@@ -53,12 +55,12 @@ const Router = () => {
                 element={
                     <PrivateRoute
                         requiredAuths={[authorities.USER_READ]}
-                        element={<UserPage />}
+                        element={<UserPage/>}
                     ></PrivateRoute>
                 }
             />
 
-            <Route path='*' element={<div>Not Found</div>} />
+            <Route path='*' element={<div>Not Found</div>}/>
         </Routes>
     );
 };
