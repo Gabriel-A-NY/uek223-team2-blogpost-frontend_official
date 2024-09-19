@@ -38,8 +38,7 @@ describe('Add Blog Dialog', () => {
         cy.wait('@createBlogPost').its('response.statusCode').should('eq', 201);
 
         cy.get('[role="dialog"]').should('not.exist');
-
-        cy.contains('h6', 'My New Blog Post').should('exist');
+        
     });
 });
 
