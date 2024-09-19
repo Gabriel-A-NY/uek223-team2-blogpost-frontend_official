@@ -6,7 +6,6 @@ import { Button, Grid, Typography } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import ViewBlogButton from "../atoms/ViewBlogButton";
-import AddBlogPostButton from "../atoms/AddBlogButton";
 import UpdateBlogButton from "../atoms/UpdateBlogButton";
 import DeleteBlogButton from "../atoms/DeleteBlogButton";
 import UpdateBlogPostDialog from "../molecules/UpdateBlogDialog/UpdateBlogDialog";
@@ -90,7 +89,7 @@ export default function HomePage() {
                                     category: {blog.category}
                                 </Typography>
                                 <ViewBlogButton onClick={() => handleShowBlog(blog.id)} />
-                                <AddBlogPostButton onClick={() => handleAddBlog()} />
+
                                 <UpdateBlogButton onClick={() => handleUpdateBlog(blog.id)} />
                                 <DeleteBlogButton onClick={() => handleDeleteBlogPost(blog.id)} />
                             </CardContent>
