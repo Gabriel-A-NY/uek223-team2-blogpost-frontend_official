@@ -14,4 +14,4 @@ The first thing you do as an admin is log in. Then you can edit, create or delet
 
 ## Information
 
-The project was written in typescript + react. So if you want to understand the code, you have to be familiar with these languages already. Otherwise you're not going to get it. Frontend was designed and written by Adam Swiderski and Gabriel Arocha. But for it to work correctly, you need the backend. The tests can be found in the cypress folder. To start the code from your own device, type **yarn start** in the IDE's console.
+The project was written in typescript + react. So if you want to understand the code, you have to be familiar with these languages already. Otherwise you're not going to get it. Frontend was designed and written by Adam Swiderski and Gabriel Arocha. But for it to work correctly, you need the backend. The tests can be found in the cypress folder. To start the code from your own device, type "**yarn start**" in the IDE's console.
