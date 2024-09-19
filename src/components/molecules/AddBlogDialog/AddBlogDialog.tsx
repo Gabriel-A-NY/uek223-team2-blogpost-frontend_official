@@ -1,9 +1,11 @@
 import React from "react";
-import { TextField, Button, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
-import { useFormik } from "formik";
+import {TextField, Button, Grid, Dialog, DialogTitle, DialogContent, DialogActions} from "@mui/material";
+import {useFormik} from "formik";
 import * as Yup from "yup";
 import BlogPostService from "../../../Services/BlogPostService";
 import AddBlogButton from "../../atoms/AddBlogButton";
+import CreateBlogButton from "../../atoms/CreateBlogButton";
+import CancelButton from "../../atoms/CancelButton";
 
 interface Author {
     id: string;
@@ -65,7 +67,7 @@ export default function AddBlogDialog() {
 
     return (
         <>
-            <AddBlogButton onClick={handleOpen} />
+            <AddBlogButton onClick={handleOpen}/>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
                 <DialogTitle>Create a New Blog Post</DialogTitle>
                 <form onSubmit={formik.handleSubmit}>
@@ -161,10 +163,8 @@ export default function AddBlogDialog() {
                         </Grid>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="secondary">Cancel</Button>
-                        <Button type="submit" variant="contained" color="primary">
-                            Create Blog Post
-                        </Button>
+                        <CancelButton onClick={handleClose}/>
+                        <CreateBlogButton onClick={formik.handleSubmit}/>
                     </DialogActions>
                 </form>
             </Dialog>
