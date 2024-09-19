@@ -19,7 +19,7 @@ export default function HomePage() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const page = parseInt(searchParams.get('page') || '0');
+    const page = parseInt(searchParams.get('page') || '1');
 
     const fetchBlogPosts = async () => {
         try {
@@ -71,7 +71,7 @@ export default function HomePage() {
     };
 
     const handlePreviousPage = () => {
-        if (page > 1) {
+        if (page > 0) {
             navigate(`/blogposts?page=${page - 1}`);
         }
     };

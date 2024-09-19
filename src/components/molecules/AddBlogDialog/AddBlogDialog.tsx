@@ -55,7 +55,7 @@ export default function AddBlogDialog() {
             try {
                 const response = await BlogPostService.createBlogPost(values as BlogPostDTO);
                 console.log("Blog post created:", response);
-                alert("Blog post created successfully!"); // Success alert
+                alert("Blog post created successfully!");
                 handleClose();
             } catch (error: any) {
                 console.error("Error creating blog post:", error.response ? error.response.data : error.message);
