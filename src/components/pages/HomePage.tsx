@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import BlogPostService from "../../Services/BlogPostService";
 import { BlogProperties } from "../../types/BlogProperties";
 import { Button, Grid, Typography } from "@mui/material";
@@ -13,13 +13,16 @@ import AddBlogDialog from "../molecules/AddBlogDialog/AddBlogDialog";
 
 export default function HomePage() {
     const [blogposts, setBlogposts] = useState<BlogProperties[]>([]);
-    const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null); // State for storing the blog to update
-    const [isDialogOpen, setIsDialogOpen] = useState(false); // Control dialog visibility
+    const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    const page = parseInt(searchParams.get('page') || '1');
 
     const fetchBlogPosts = async () => {
         try {
-            const response = await BlogPostService.getBlogPosts();
+            const response = await BlogPostService.getBlogPosts(page); // Fetch posts for the current page
             setBlogposts(response);
         } catch (error) {
             console.error("Error fetching blog posts:", error);
@@ -28,27 +31,20 @@ export default function HomePage() {
 
     useEffect(() => {
         fetchBlogPosts();
-    }, []);
+    }, [page]); // Refetch when `page` changes
 
     const handleShowBlog = (id: string) => {
-        console.log("Navigating to blog with ID:", id);
         navigate(`/blogposts/${id}`);
     };
 
-    const handleAddBlog = () => {
-        navigate(`/blogposts/add`)
-    }
-
     const handleUpdateBlog = (id: string) => {
-        // Open the dialog and pass the selected blog ID
         setSelectedBlogId(id);
         setIsDialogOpen(true);
-    }
+    };
 
     const handleDialogClose = () => {
-        // Close the dialog
         setIsDialogOpen(false);
-        setSelectedBlogId(null); // Clear the selected blog ID
+        setSelectedBlogId(null);
     };
 
     const handleDeleteBlogPost = async (blogId: string) => {
@@ -69,6 +65,16 @@ export default function HomePage() {
         );
     };
 
+    const handleNextPage = () => {
+        navigate(`/blogposts?page=${page + 1}`);
+    };
+
+    const handlePreviousPage = () => {
+        if (page > 1) {
+            navigate(`/blogposts?page=${page - 1}`);
+        }
+    };
+
     return (
         <>
             <Grid container spacing={2}>
@@ -76,20 +82,13 @@ export default function HomePage() {
                     <Grid item xs={12} key={blog.id}>
                         <Card>
                             <CardContent>
-                                <Typography variant="h6">
-                                    {blog.title}
-                                </Typography>
-                                <Typography variant="body2">
-                                    {blog.text}
-                                </Typography>
+                                <Typography variant="h6">{blog.title}</Typography>
+                                <Typography variant="body2">{blog.text}</Typography>
                                 <Typography variant="body2">
                                     author: {blog.author.firstName} {blog.author.lastName}
                                 </Typography>
-                                <Typography variant="body2">
-                                    category: {blog.category}
-                                </Typography>
+                                <Typography variant="body2">category: {blog.category}</Typography>
                                 <ViewBlogButton onClick={() => handleShowBlog(blog.id)} />
-
                                 <UpdateBlogButton onClick={() => handleUpdateBlog(blog.id)} />
                                 <DeleteBlogButton onClick={() => handleDeleteBlogPost(blog.id)} />
                             </CardContent>
@@ -97,6 +96,14 @@ export default function HomePage() {
                     </Grid>
                 ))}
             </Grid>
+
+            {/* Pagination Buttons */}
+            <Button onClick={handlePreviousPage} disabled={page <= 1}>
+                Previous
+            </Button>
+            <Button onClick={handleNextPage}>
+                Next
+            </Button>
 
             {/* Update Blog Dialog */}
             {selectedBlogId && (
