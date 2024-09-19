@@ -10,9 +10,8 @@ import UpdateBlogButton from "../atoms/UpdateBlogButton";
 import DeleteBlogButton from "../atoms/DeleteBlogButton";
 import UpdateBlogPostDialog from "../molecules/UpdateBlogDialog/UpdateBlogDialog";
 import AddBlogDialog from "../molecules/AddBlogDialog/AddBlogDialog";
-import activeUserContext from "../../Contexts/ActiveUserContext";
 
-export default function HomePage() {
+export default function LoggedInpage() {
     const [blogposts, setBlogposts] = useState<BlogProperties[]>([]);
     const [selectedBlogId, setSelectedBlogId] = useState<string | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -34,9 +33,37 @@ export default function HomePage() {
         fetchBlogPosts();
     }, [page]);
 
-    const handleLogin = () => {
-        navigate(`/login`)
-    }
+    const handleShowBlog = (id: string) => {
+        navigate(`/blogposts/${id}`);
+    };
+
+    const handleUpdateBlog = (id: string) => {
+        setSelectedBlogId(id);
+        setIsDialogOpen(true);
+    };
+
+    const handleDialogClose = () => {
+        setIsDialogOpen(false);
+        setSelectedBlogId(null);
+    };
+
+    const handleDeleteBlogPost = async (blogId: string) => {
+        try {
+            await BlogPostService.deleteBlogPost(blogId);
+            const updatedBlogPosts = blogposts.filter((blog) => blog.id !== blogId);
+            setBlogposts(updatedBlogPosts);
+        } catch (error) {
+            alert("Error deleting blog post.");
+        }
+    };
+
+    const handleBlogUpdate = async (updatedBlog: BlogProperties) => {
+        setBlogposts((prev) =>
+            prev.map((blog) =>
+                blog.id === updatedBlog.id ? updatedBlog : blog
+            )
+        );
+    };
 
     const handleNextPage = () => {
         navigate(`/blogposts?page=${page + 1}`);
@@ -61,6 +88,9 @@ export default function HomePage() {
                                     author: {blog.author.firstName} {blog.author.lastName}
                                 </Typography>
                                 <Typography variant="body2">category: {blog.category}</Typography>
+                                <ViewBlogButton onClick={() => handleShowBlog(blog.id)} />
+                                <UpdateBlogButton onClick={() => handleUpdateBlog(blog.id)} />
+                                <DeleteBlogButton onClick={() => handleDeleteBlogPost(blog.id)} />
                             </CardContent>
                         </Card>
                     </Grid>
@@ -74,9 +104,17 @@ export default function HomePage() {
             <Button onClick={handleNextPage}>
                 Next
             </Button>
-            <Button onClick={handleLogin}>
-                login
-            </Button>
+
+            {/* Update Blog Dialog */}
+            {selectedBlogId && (
+                <UpdateBlogPostDialog
+                    open={isDialogOpen}
+                    blogId={selectedBlogId}
+                    onClose={handleDialogClose}
+                    onBlogUpdate={handleBlogUpdate}
+                />
+            )}
+            <AddBlogDialog />
         </>
     );
 }
