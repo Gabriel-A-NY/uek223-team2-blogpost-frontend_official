@@ -10,6 +10,7 @@ import AddBlogPostButton from "../atoms/AddBlogButton";
 import UpdateBlogButton from "../atoms/UpdateBlogButton";
 import DeleteBlogButton from "../atoms/DeleteBlogButton";
 import UpdateBlogPostDialog from "../molecules/UpdateBlogDialog/UpdateBlogDialog";
+import AddBlogDialog from "../molecules/AddBlogDialog/AddBlogDialog";
 
 export default function HomePage() {
     const [blogposts, setBlogposts] = useState<BlogProperties[]>([]);
@@ -17,15 +18,16 @@ export default function HomePage() {
     const [isDialogOpen, setIsDialogOpen] = useState(false); // Control dialog visibility
     const navigate = useNavigate();
 
+    const fetchBlogPosts = async () => {
+        try {
+            const response = await BlogPostService.getBlogPosts();
+            setBlogposts(response);
+        } catch (error) {
+            console.error("Error fetching blog posts:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchBlogPosts = async () => {
-            try {
-                const response = await BlogPostService.getBlogPosts();
-                setBlogposts(response);
-            } catch (error) {
-                console.error("Error fetching blog posts:", error);
-            }
-        };
         fetchBlogPosts();
     }, []);
 
@@ -106,6 +108,7 @@ export default function HomePage() {
                     onBlogUpdate={handleBlogUpdate}
                 />
             )}
+            <AddBlogDialog />
         </>
     );
 }

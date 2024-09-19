@@ -1,4 +1,4 @@
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import LoginPage from '../components/pages/LoginPage/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../components/pages/HomePage';
@@ -8,7 +8,6 @@ import authorities from '../config/Authorities';
 import SingleBlogView from "../components/organisms/SingleBlogView";
 import UpdateBlogPostDialog from "../components/molecules/UpdateBlogDialog/UpdateBlogDialog";
 import AddBlogDialog from "../components/molecules/AddBlogDialog/AddBlogDialog";
-import {Dashboard} from "@mui/icons-material";
 
 /**
  * Router component renders a route switch with all available pages
