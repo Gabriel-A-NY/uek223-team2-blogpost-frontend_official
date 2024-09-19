@@ -26,7 +26,7 @@ const Router = () => {
             <Route path={'/login'} element={<LoginPage/>}/>
             <Route path={'/blogposts/add'} element={<AddBlogDialog/>}/>
             <Route path={'/blogposts/:id'} element={<SingleBlogView/>}/>
-            <Route path={'/blogposts/update/:id'} element={<UpdateBlogPostDialog/>}/>
+
             <Route path={'blogposts'} element={<HomePage/>} />
             <Route
                 path={'/dashboard'}
