@@ -68,7 +68,7 @@ export default function AddBlogDialog() {
 
     return (
         <>
-            <AddBlogButton onClick={handleOpen} />
+            <AddBlogButton onClick={handleOpen} id={'#addbutton'} />
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
                 <DialogTitle>Create a New Blog Post</DialogTitle>
                 <form onSubmit={formik.handleSubmit}>
@@ -165,7 +165,7 @@ export default function AddBlogDialog() {
                     </DialogContent>
                     <DialogActions>
                         <CancelButton onClick={handleClose} />
-                        <CreateBlogButton onClick={formik.handleSubmit} />
+                        <CreateBlogButton onClick={formik.handleSubmit} id={'#addbutton'} />
                     </DialogActions>
                 </form>
             </Dialog>
