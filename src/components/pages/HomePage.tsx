@@ -18,7 +18,7 @@ export default function HomePage() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const page = parseInt(searchParams.get('page') || '1');
+    const page = parseInt(searchParams.get('page') || '0');
 
     const fetchBlogPosts = async () => {
         try {
