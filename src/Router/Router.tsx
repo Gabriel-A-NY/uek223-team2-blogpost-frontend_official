@@ -21,16 +21,17 @@ const Router = () => {
 
     return (
         <Routes>
-            <Route path={'/'} element={<HomePage/>}/>
+            <Route path={'/'} element={<LoginPage />}/>
             <Route path={'/login'} element={<LoginPage/>}/>
             <Route path={'/blogposts/add'} element={<AddBlogDialog/>}/>
             <Route path={'/blogposts/:id'} element={<SingleBlogView/>}/>
             <Route path={'/blogposts'} element={<LoggedInpage/>} />
+            <Route path={'/home'} element={<HomePage/>}/>
             <Route
                 path={'/dashboard'}
                 element={
                     <PrivateRoute requiredAuths={[]}
-                                  element={<HomePage/>}
+                                  element={<LoggedInpage/>}
                     ></PrivateRoute>
                 }
             />
