@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import BlogPostService from "../../../Services/BlogPostService";
+import AddBlogButton from "../../atoms/AddBlogButton";
 
 interface Author {
     id: string;
@@ -59,10 +60,7 @@ export default function AddBlogDialog() {
 
     return (
         <>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
-                Add Blog Post
-            </Button>
-
+            <AddBlogButton onClick={handleOpen} />
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
                 <DialogTitle>Create a New Blog Post</DialogTitle>
                 <form onSubmit={handleSubmit}>
