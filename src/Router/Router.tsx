@@ -8,7 +8,6 @@ import authorities from '../config/Authorities';
 import SingleBlogView from "../components/organisms/SingleBlogView";
 import UpdateBlogPostDialog from "../components/molecules/UpdateBlogDialog/UpdateBlogDialog";
 import AddBlogDialog from "../components/molecules/AddBlogDialog/AddBlogDialog";
-import {Dashboard} from "@mui/icons-material";
 
 /**
  * Router component renders a route switch with all available pages
@@ -22,29 +21,32 @@ const Router = () => {
 
     return (
         <Routes>
-            <Route path={'/'} element={<HomePage />} />
-            <Route path={'/login'} element={<LoginPage />} />
-            <Route path={'/blogposts/add'} element={<AddBlogDialog />} />
-            <Route path={'/blogposts/:id'} element={<SingleBlogView />} />
-            <Route path={'/blogposts/update/:id'} element={<UpdateBlogPostDialog />} />
+            <Route path={'/'} element={<LoginPage/>}/>
+            <Route path={'/login'} element={<LoginPage/>}/>
+            <Route path={'/blogposts/add'} element={<AddBlogDialog/>}/>
+            <Route path={'/blogposts/:id'} element={<SingleBlogView/>}/>
+
+
+            <Route path={'blogposts'} element={<HomePage/>} />
             <Route
-                path='/dashboard'
+                path={'/dashboard'}
                 element={
-            <PrivateRoute requiredAuths={[authorities.USER_DEACTIVATE, authorities.USER_CREATE]}
-                          element={<Dashboard />}
-            ></PrivateRoute>
-                }/>
+                    <PrivateRoute requiredAuths={[]}
+                                  element={<HomePage/>}
+                    ></PrivateRoute>
+                }
+            />
 
             <Route
                 path={'/users'}
-                element={<PrivateRoute requiredAuths={[]} element={<UserTable />} />}
+                element={<PrivateRoute requiredAuths={[]} element={<UserTable/>}/>}
             />
             <Route
                 path='/useredit'
                 element={
                     <PrivateRoute
                         requiredAuths={[authorities.USER_DEACTIVATE, authorities.USER_CREATE]}
-                        element={<UserPage />}
+                        element={<UserPage/>}
                     ></PrivateRoute>
                 }
             />
@@ -53,12 +55,12 @@ const Router = () => {
                 element={
                     <PrivateRoute
                         requiredAuths={[authorities.USER_READ]}
-                        element={<UserPage />}
+                        element={<UserPage/>}
                     ></PrivateRoute>
                 }
             />
 
-            <Route path='*' element={<div>Not Found</div>} />
+            <Route path='*' element={<div>Not Found</div>}/>
         </Routes>
     );
 };
