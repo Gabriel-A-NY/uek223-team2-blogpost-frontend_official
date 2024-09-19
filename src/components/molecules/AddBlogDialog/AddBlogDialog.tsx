@@ -1,6 +1,6 @@
 import React from "react";
-import {TextField, Button, Grid, Dialog, DialogTitle, DialogContent, DialogActions} from "@mui/material";
-import {useFormik} from "formik";
+import { TextField, Button, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import BlogPostService from "../../../Services/BlogPostService";
 import AddBlogButton from "../../atoms/AddBlogButton";
@@ -55,6 +55,7 @@ export default function AddBlogDialog() {
             try {
                 const response = await BlogPostService.createBlogPost(values as BlogPostDTO);
                 console.log("Blog post created:", response);
+                alert("Blog post created successfully!"); // Success alert
                 handleClose();
             } catch (error: any) {
                 console.error("Error creating blog post:", error.response ? error.response.data : error.message);
@@ -67,7 +68,7 @@ export default function AddBlogDialog() {
 
     return (
         <>
-            <AddBlogButton onClick={handleOpen}/>
+            <AddBlogButton onClick={handleOpen} />
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
                 <DialogTitle>Create a New Blog Post</DialogTitle>
                 <form onSubmit={formik.handleSubmit}>
@@ -163,8 +164,8 @@ export default function AddBlogDialog() {
                         </Grid>
                     </DialogContent>
                     <DialogActions>
-                        <CancelButton onClick={handleClose}/>
-                        <CreateBlogButton onClick={formik.handleSubmit}/>
+                        <CancelButton onClick={handleClose} />
+                        <CreateBlogButton onClick={formik.handleSubmit} />
                     </DialogActions>
                 </form>
             </Dialog>
