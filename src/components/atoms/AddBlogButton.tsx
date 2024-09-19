@@ -3,7 +3,7 @@ import ButtonProperties from "../../types/ButtonProperties";
 
 function AddBlogPostButton({ onClick, id }: ButtonProperties) {
     return (
-        <Button variant="contained" color="primary" onClick={onClick} id={id}>
+        <Button variant="contained" color="primary" onClick={onClick}>
             +
         </Button>
     );
