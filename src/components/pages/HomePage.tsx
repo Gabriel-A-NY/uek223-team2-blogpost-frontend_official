@@ -31,7 +31,7 @@ export default function HomePage() {
 
     useEffect(() => {
         fetchBlogPosts();
-    }, [page]); // Refetch when `page` changes
+    }, [page]);
 
     const handleShowBlog = (id: string) => {
         navigate(`/blogposts/${id}`);
