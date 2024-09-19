@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BlogPostService from "../../Services/BlogPostService";
 import { BlogProperties } from "../../types/BlogProperties";
@@ -10,6 +10,7 @@ import UpdateBlogButton from "../atoms/UpdateBlogButton";
 import DeleteBlogButton from "../atoms/DeleteBlogButton";
 import UpdateBlogPostDialog from "../molecules/UpdateBlogDialog/UpdateBlogDialog";
 import AddBlogDialog from "../molecules/AddBlogDialog/AddBlogDialog";
+import activeUserContext from "../../Contexts/ActiveUserContext";
 
 export default function HomePage() {
     const [blogposts, setBlogposts] = useState<BlogProperties[]>([]);
