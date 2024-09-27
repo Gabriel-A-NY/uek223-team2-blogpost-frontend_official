@@ -25,6 +25,7 @@
     "create-react-app": "^3.4.1",
     "crypto-browserify": "^3.12.0",
     "formik": "^2.4.3",
+    "caniuse-lite": "1.0.30001632",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "notistack": "^0.9.8",
@@ -84,5 +85,8 @@
     "fallback": {
       "crypto": "require.resolve('crypto-js')"
     }
+  },
+  "resolutions": {
+    "caniuse-lite": "1.0.30001632"
   }
 }
