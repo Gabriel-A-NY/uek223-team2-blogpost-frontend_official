@@ -1,0 +1,16 @@
+name: HelloWorldAction
+
+on:
+  push:
+    
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+    
+      - name: say hi
+        run: echo "hello world"
+    
