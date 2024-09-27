@@ -12,6 +12,7 @@
     "@mui/x-data-grid": "^5.17.23",
     "@types/jest": "^27.5.2",
     "@types/jsonwebtoken": "^8.5.9",
+    "caniuse-lite": "1.0.30001632",
     "@types/node": "^16.11.62",
     "@types/react": "^18.0.21",
     "@types/react-color": "^3.0.4",
@@ -84,5 +85,8 @@
     "fallback": {
       "crypto": "require.resolve('crypto-js')"
     }
+  },
+  "resolutions": {
+    "caniuse-lite": "1.0.30001632"
   }
 }
